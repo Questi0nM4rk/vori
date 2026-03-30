@@ -32,12 +32,12 @@
     "lint:fix": "biome check --write src/ __tests__/"
   },
   "dependencies": {
-    "yaml": "^2.7.0"
+    "yaml": "^2.8.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.8",
     "@questi0nm4rk/feats": "^1.0.1",
     "bun-types": "latest",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   }
 }

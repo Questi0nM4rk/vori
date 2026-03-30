@@ -1,4 +1,4 @@
-import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { basename, join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
 import type { Note } from "./types.ts";
@@ -86,7 +86,8 @@ export function parseNote(filePath: string, vaultRoot: string): Note {
 /**
  * Recursively load all .md files from a vault directory.
  * Throws if vault path not found. Skips unreadable files with a stderr warning.
- * Note: symlinks to directories are traversed via statSync; symlinks to .md files included.
+ * Symlinked directories are traversed (followSymlinks: true).
+ * Skips node_modules, .git, .obsidian.
  */
 export function loadVault(vaultPath: string): Note[] {
   if (!existsSync(vaultPath)) {
@@ -94,38 +95,20 @@ export function loadVault(vaultPath: string): Note[] {
   }
 
   const notes: Note[] = [];
+  const glob = new Bun.Glob("**/*.md");
 
-  function walk(dir: string): void {
-    for (const entry of readdirSync(dir, { withFileTypes: true })) {
-      if (SKIP_DIRS.has(entry.name)) continue;
-      const full = join(dir, entry.name);
+  for (const file of glob.scanSync({ cwd: vaultPath, followSymlinks: true })) {
+    // Skip files under SKIP_DIRS (e.g. node_modules/.git/.obsidian)
+    if (file.split("/").some((seg) => SKIP_DIRS.has(seg))) continue;
 
-      // Resolve symlinks for directory detection (isDirectory() returns false for symlinks)
-      let isDir = entry.isDirectory();
-      if (entry.isSymbolicLink()) {
-        try {
-          isDir = statSync(full).isDirectory();
-        } catch {
-          continue; // broken symlink — skip
-        }
-      }
-
-      if (isDir) {
-        walk(full);
-      } else if (
-        entry.name.endsWith(".md") ||
-        (entry.isSymbolicLink() && full.endsWith(".md"))
-      ) {
-        try {
-          notes.push(parseNote(full, vaultPath));
-        } catch (err: unknown) {
-          const msg = err instanceof Error ? err.message : String(err);
-          process.stderr.write(`vq: warning: skipping ${full}: ${msg}\n`);
-        }
-      }
+    const full = join(vaultPath, file);
+    try {
+      notes.push(parseNote(full, vaultPath));
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      process.stderr.write(`vq: warning: skipping ${full}: ${msg}\n`);
     }
   }
 
-  walk(vaultPath);
   return notes;
 }
