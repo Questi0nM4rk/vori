@@ -1,10 +1,10 @@
-# SPEC Index — vq
+# SPEC Index — vori
 
 ## Active
 
 | # | Title | Status |
 |---|-------|--------|
-| [SPEC-001](SPEC-001-architecture.md) | vq Architecture | Draft |
+| [SPEC-001](SPEC-001-architecture.md) | vori Architecture | Draft |
 
 ## Numbering
 

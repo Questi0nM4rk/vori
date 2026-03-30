@@ -1,5 +1,5 @@
 {
-  "name": "vq",
+  "name": "vori",
   "version": "1.0.0",
   "description": "Vault query CLI — search and query Obsidian-style markdown vaults from the terminal",
   "keywords": [
@@ -22,22 +22,23 @@
   "license": "MIT",
   "type": "module",
   "bin": {
-    "vq": "./bin/vq"
+    "vori": "./bin/vori"
   },
   "scripts": {
-    "build": "bun build src/main.ts --compile --outfile bin/vq",
+    "build": "bun build src/main.ts --compile --outfile bin/vori",
     "test": "bun test",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsgo --noEmit",
     "lint": "biome check src/ __tests__/",
     "lint:fix": "biome check --write src/ __tests__/"
   },
   "dependencies": {
-    "yaml": "^2.7.0"
+    "yaml": "^2.8.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.8",
     "@questi0nm4rk/feats": "^1.0.1",
+    "@typescript/native-preview": "latest",
     "bun-types": "latest",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   }
 }

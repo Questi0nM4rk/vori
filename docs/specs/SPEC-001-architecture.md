@@ -1,15 +1,15 @@
-# SPEC-001 — vq Architecture
+# SPEC-001 — vori Architecture
 
 **Status:** Draft
 **Domain:** CLI tooling
-**Repo:** `Questi0nM4rk/vq`
+**Repo:** `Questi0nM4rk/vori`
 **Related:** SPEC-005 (marketplace architecture), SPEC-007 (sg)
 
 ---
 
 ## Problem
 
-`vq` is a generic markdown vault query tool with no dependency on qsm-marketplace concepts. Keeping it inside qsm-marketplace makes it:
+`vori` is a generic markdown vault query tool with no dependency on qsm-marketplace concepts. Keeping it inside qsm-marketplace makes it:
 - Unavailable to install independently (no npm package, no releases)
 - Subject to marketplace conventions that don't apply to a standalone CLI
 - Invisible to anyone searching for Obsidian-compatible CLI tools
@@ -21,7 +21,7 @@
 
 ## Philosophy
 
-1. **Small binary, long discoverability.** The command is `vq` — 2 characters. The npm package name, description, and keywords are optimized for search.
+1. **Small binary, long discoverability.** The command is `vori` — 2 characters. The npm package name, description, and keywords are optimized for search.
    WHY: CLI tools live or die by findability and typing friction. `vault-query` as a command would see zero adoption.
 
 2. **Spec-driven from day 1.** Architectural decisions live in SPEC files before implementation. No "we'll figure it out."
@@ -33,7 +33,7 @@
 4. **ai-guardrails as standard infrastructure.** Global hooks cover dangerous commands and config protection. Project-level config covers TypeScript-specific rules.
    WHY: Guardrails enforce standards without relying on model memory or session context.
 
-5. **npm-first, binary-optional.** Published to npm for `bun add -g vq` install. Precompiled binaries on GitHub releases for systems without bun/node.
+5. **npm-first, binary-optional.** Published to npm for `bun add -g vori` install. Precompiled binaries on GitHub releases for systems without bun/node.
    WHY: npm is the primary install path; binaries serve users who want zero-dependency installs.
 
 6. **No runtime dependencies beyond bun/node.** The `yaml` package is the only production dependency. `@questi0nm4rk/feats` and all test tooling are devDependencies.
@@ -43,12 +43,12 @@
 
 ## Solution
 
-Standalone GitHub repository: `Questi0nM4rk/vq`
+Standalone GitHub repository: `Questi0nM4rk/vori`
 
 ### Repository Structure
 
 ```
-vq/
+vori/
 ├── src/
 │   ├── main.ts              # Entry point, parseArgs, command dispatch
 │   └── lib/
@@ -71,7 +71,7 @@ vq/
 │       ├── SPEC-001-architecture.md    # This document (renumbered for new repo)
 │       └── SPEC-INDEX.md
 ├── bin/
-│   └── vq                   # Compiled binary (git-ignored, CI artifact)
+│   └── vori                   # Compiled binary (git-ignored, CI artifact)
 ├── package.json
 ├── tsconfig.json
 ├── biome.json
@@ -83,15 +83,15 @@ vq/
 
 | Command | Description |
 |---------|-------------|
-| `vq list <vault>` | List all .md files with frontmatter summary |
-| `vq query <vault> --tag key=value` | Filter by frontmatter key/value (dot notation, AND semantics) |
-| `vq query <vault> --hashtag tag` | Filter by #hashtag |
-| `vq tags <vault>` | Show all frontmatter keys + #hashtags with counts |
-| `vq links <vault> <note>` | Outgoing [[wikilinks]] from a note |
-| `vq backlinks <vault> <note>` | Incoming links to a note |
-| `vq orphans <vault>` | Notes with no incoming or outgoing links |
-| `vq search <vault> <query>` | Full-text search across title, frontmatter values, body |
-| `vq recent <vault> [--days=N]` | Notes with `date` frontmatter within last N days (default: `--days=7`) |
+| `vori list <vault>` | List all .md files with frontmatter summary |
+| `vori query <vault> --tag key=value` | Filter by frontmatter key/value (dot notation, AND semantics) |
+| `vori query <vault> --hashtag tag` | Filter by #hashtag |
+| `vori tags <vault>` | Show all frontmatter keys + #hashtags with counts |
+| `vori links <vault> <note>` | Outgoing [[wikilinks]] from a note |
+| `vori backlinks <vault> <note>` | Incoming links to a note |
+| `vori orphans <vault>` | Notes with no incoming or outgoing links |
+| `vori search <vault> <query>` | Full-text search across title, frontmatter values, body |
+| `vori recent <vault> [--days=N]` | Notes with `date` frontmatter within last N days (default: `--days=7`) |
 
 All commands support `--json` for structured output.
 
@@ -99,7 +99,7 @@ All commands support `--json` for structured output.
 
 ```json
 {
-  "name": "vq",
+  "name": "vori",
   "version": "1.0.0",
   "description": "Vault query CLI — search and query Obsidian-style markdown vaults from the terminal",
   "keywords": [
@@ -107,7 +107,7 @@ All commands support `--json` for structured output.
     "markdown", "markdown-cli", "notes", "knowledge-base", "wikilinks",
     "frontmatter", "yaml", "second-brain", "pkm"
   ],
-  "bin": { "vq": "./bin/vq" }
+  "bin": { "vori": "./bin/vori" }
 }
 ```
 
@@ -182,7 +182,7 @@ Project-level `.ai-guardrails.json`:
 3. **The `yaml` package is the only production dependency.** Adding runtime deps requires a SPEC.
    CHANGE TRIGGER: Feature that genuinely requires a new dep (e.g. fuzzy search library).
 
-4. **No vault mutation.** vq is read-only. No write commands, no file modification.
+4. **No vault mutation.** vori is read-only. No write commands, no file modification.
    CHANGE TRIGGER: Never. Write operations belong in a separate tool.
 
 5. **Obsidian-compatible, not Obsidian-exclusive.** Any directory of `.md` files with YAML frontmatter is a valid vault.
@@ -194,17 +194,17 @@ Project-level `.ai-guardrails.json`:
 
 The migration is a file move, not a rewrite:
 
-1. Create `Questi0nM4rk/vq` repo
-2. Copy `src/tools/vq/` → `src/` in new repo
-3. Copy `src/tools/vq/__tests__/` → `__tests__/` in new repo
+1. Create `Questi0nM4rk/vori` repo
+2. Copy `src/tools/vori/` → `src/` in new repo
+3. Copy `src/tools/vori/__tests__/` → `__tests__/` in new repo
 4. Create standalone `package.json`, `tsconfig.json`, `biome.json`
 5. Add `CLAUDE.md`, `docs/specs/SPEC-001-architecture.md` (this spec, renumbered)
 6. Add `.ai-guardrails.json`
 7. Set up GitHub Actions: `bun test`, `bunx biome check`, release workflow
 8. Publish to npm
-9. Remove `src/tools/vq/` from qsm-marketplace
-10. Update `qsm-vault-tools` plugin setup script to install via `bun add -g vq`
-11. Remove `build:vq` script and `vq` bin entry from marketplace `package.json`
+9. Remove `src/tools/vori/` from qsm-marketplace
+10. Update `qsm-vault-tools` plugin setup script to install via `bun add -g vori`
+11. Remove `build:vori` script and `vori` bin entry from marketplace `package.json`
 
 **No functional changes during migration.** All 45 tests must pass in the new repo before the marketplace source is deleted.
 
@@ -215,8 +215,8 @@ The migration is a file move, not a rewrite:
 | Trigger | Change |
 |---------|--------|
 | Request for fuzzy search | SPEC for new `--fuzzy` flag, dependency decision |
-| Watch mode request | SPEC for `vq watch <vault>` — file system watcher |
-| Multiple vault support | `vq query <vault1> <vault2>` — SPEC needed |
+| Watch mode request | SPEC for `vori watch <vault>` — file system watcher |
+| Multiple vault support | `vori query <vault1> <vault2>` — SPEC needed |
 | Output format plugins | Custom output formatters — major version feature |
 | `.trash` dir exclusion | Add to `SKIP_DIRS` in parser.ts — no SPEC needed |
 
@@ -224,5 +224,5 @@ The migration is a file move, not a rewrite:
 
 ## Open Questions
 
-- Should `vq` publish TypeScript types alongside the binary for programmatic use?
+- Should `vori` publish TypeScript types alongside the binary for programmatic use?
 - GitHub Actions: build binaries for Linux, macOS, Windows — or Linux only for v1?
