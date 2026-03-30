@@ -22,9 +22,10 @@
   "license": "MIT",
   "type": "module",
   "bin": {
-    "vori": "./src/main.ts"
+    "vori": "./bin/vori.js"
   },
   "files": [
+    "bin/vori.js",
     "src/",
     "tsconfig.json"
   ],
