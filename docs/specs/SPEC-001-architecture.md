@@ -33,7 +33,7 @@
 4. **ai-guardrails as standard infrastructure.** Global hooks cover dangerous commands and config protection. Project-level config covers TypeScript-specific rules.
    WHY: Guardrails enforce standards without relying on model memory or session context.
 
-5. **npm-first, binary-optional.** Published to npm for `bun add -g vori` install. Precompiled binaries on GitHub releases for systems without bun/node.
+5. **npm-first, binary-optional.** Published to npm for `bun add -g @questi0nm4rk/vori` install. Precompiled binaries on GitHub releases for systems without bun/node.
    WHY: npm is the primary install path; binaries serve users who want zero-dependency installs.
 
 6. **No runtime dependencies beyond bun/node.** The `yaml` package is the only production dependency. `@questi0nm4rk/feats` and all test tooling are devDependencies.
@@ -203,7 +203,7 @@ The migration is a file move, not a rewrite:
 7. Set up GitHub Actions: `bun test`, `bunx biome check`, release workflow
 8. Publish to npm
 9. Remove `src/tools/vori/` from qsm-marketplace
-10. Update `qsm-vault-tools` plugin setup script to install via `bun add -g vori`
+10. Update `qsm-vault-tools` plugin setup script to install via `bun add -g @questi0nm4rk/vori`
 11. Remove `build:vori` script and `vori` bin entry from marketplace `package.json`
 
 **No functional changes during migration.** All 45 tests must pass in the new repo before the marketplace source is deleted.
