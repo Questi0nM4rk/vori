@@ -22,20 +22,19 @@
   "license": "MIT",
   "type": "module",
   "bin": {
-    "vori": "./bin/vori.js"
+    "vori": "bin/vori.js"
   },
   "files": [
-    "bin/vori.js",
-    "src/",
-    "tsconfig.json"
+    "bin/vori.js"
   ],
   "scripts": {
     "build": "bun build src/main.ts --compile --outfile bin/vori",
+    "build:npm": "bun build src/main.ts --target=bun --outfile bin/vori.js && chmod +x bin/vori.js",
     "test": "bun test",
     "typecheck": "tsgo --noEmit",
     "lint": "biome check src/ __tests__/",
     "lint:fix": "biome check --write src/ __tests__/",
-    "prepublishOnly": "bun run typecheck && bun test"
+    "prepublishOnly": "bun run typecheck && bun test && bun run build:npm"
   },
   "dependencies": {
     "yaml": "^2.8.0"
