@@ -13,7 +13,7 @@ of `.md` files with YAML frontmatter — Obsidian vaults, personal wikis, note c
 ```bash
 bun install          # install deps
 bun test             # run 45 tests (must pass before any commit)
-bun run typecheck    # tsc --noEmit (strict, no errors allowed)
+bun run typecheck    # tsgo --noEmit (TypeScript 7 native compiler, 7-10x faster than tsc)
 bun run lint         # biome check (0 findings required)
 bun run lint:fix     # biome check --write (auto-fix formatting)
 bun run build        # compile → bin/vq (git-ignored)
