@@ -1,5 +1,5 @@
 {
-  "name": "vori",
+  "name": "@questi0nm4rk/vori",
   "version": "1.0.0",
   "description": "Vault query CLI — search and query Obsidian-style markdown vaults from the terminal",
   "keywords": [

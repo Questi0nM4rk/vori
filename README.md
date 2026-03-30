@@ -18,11 +18,11 @@ with YAML frontmatter.
 ## Install
 
 ```bash
-bun add -g vori
+bun add -g @questi0nm4rk/vori
 ```
 
 ```bash
-npm install -g vori
+npm install -g @questi0nm4rk/vori
 ```
 
 Or download a precompiled binary from [Releases](https://github.com/Questi0nM4rk/vori/releases).
