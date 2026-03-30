@@ -22,14 +22,19 @@
   "license": "MIT",
   "type": "module",
   "bin": {
-    "vori": "./bin/vori"
+    "vori": "./src/main.ts"
   },
+  "files": [
+    "src/",
+    "tsconfig.json"
+  ],
   "scripts": {
     "build": "bun build src/main.ts --compile --outfile bin/vori",
     "test": "bun test",
     "typecheck": "tsgo --noEmit",
     "lint": "biome check src/ __tests__/",
-    "lint:fix": "biome check --write src/ __tests__/"
+    "lint:fix": "biome check --write src/ __tests__/",
+    "prepublishOnly": "bun run typecheck && bun test"
   },
   "dependencies": {
     "yaml": "^2.8.0"
