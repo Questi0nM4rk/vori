@@ -10,9 +10,9 @@ import {
   textSearch,
 } from "./lib/query.ts";
 
-const USAGE = `vq — vault query CLI for markdown vaults
+const USAGE = `vori — vault query CLI for markdown vaults
 
-Usage: vq <command> <vault-path> [options]
+Usage: vori <command> <vault-path> [options]
 
 Commands:
   list <vault>                       List all .md files with frontmatter summary
@@ -32,16 +32,16 @@ Options:
   --help       Show this help
 
 Examples:
-  vq list skill-graph/skills
-  vq query skill-graph/skills --tag "layer=methodology"
-  vq query skill-graph/skills --tag "tags.domain=testing" --hashtag important
-  vq tags skill-graph/skills
-  vq links skill-graph/skills design
-  vq backlinks skill-graph/skills tdd-workflow
-  vq orphans skill-graph/skills
-  vq search ~/.claude/mem-vault "bun test isolation"
-  vq recent ~/.claude/mem-vault --days=14
-  vq list skill-graph/skills --json | jq '.[].name'
+  vori list skill-graph/skills
+  vori query skill-graph/skills --tag "layer=methodology"
+  vori query skill-graph/skills --tag "tags.domain=testing" --hashtag important
+  vori tags skill-graph/skills
+  vori links skill-graph/skills design
+  vori backlinks skill-graph/skills tdd-workflow
+  vori orphans skill-graph/skills
+  vori search ~/.claude/mem-vault "bun test isolation"
+  vori recent ~/.claude/mem-vault --days=14
+  vori list skill-graph/skills --json | jq '.[].name'
 `;
 
 export interface ParseResult {
@@ -153,13 +153,13 @@ function main(): void {
     for (const err of errors) {
       process.stderr.write(`${err}\n`);
     }
-    process.stderr.write("Run 'vq --help' for usage.\n");
+    process.stderr.write("Run 'vori --help' for usage.\n");
     process.exit(1);
   }
 
   if (!vaultPath) {
     process.stderr.write("Error: vault-path is required.\n");
-    process.stderr.write("Run 'vq --help' for usage.\n");
+    process.stderr.write("Run 'vori --help' for usage.\n");
     process.exit(1);
   }
 
@@ -344,7 +344,7 @@ function main(): void {
     case "search": {
       if (!noteArg) {
         process.stderr.write("Error: search query is required for 'search' command.\n");
-        process.stderr.write("Usage: vq search <vault> <query>\n");
+        process.stderr.write("Usage: vori search <vault> <query>\n");
         process.exit(1);
       }
       const notes = loadVault(absVault);
@@ -382,7 +382,7 @@ function main(): void {
 
     default:
       process.stderr.write(
-        `Unknown command: ${JSON.stringify(command)}\nRun 'vq --help' for usage.\n`
+        `Unknown command: ${JSON.stringify(command)}\nRun 'vori --help' for usage.\n`
       );
       process.exit(1);
   }

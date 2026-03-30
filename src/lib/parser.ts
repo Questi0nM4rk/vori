@@ -106,7 +106,7 @@ export function loadVault(vaultPath: string): Note[] {
       notes.push(parseNote(full, vaultPath));
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err);
-      process.stderr.write(`vq: warning: skipping ${full}: ${msg}\n`);
+      process.stderr.write(`vori: warning: skipping ${full}: ${msg}\n`);
     }
   }
 

@@ -1,5 +1,5 @@
 {
-  "name": "vq",
+  "name": "vori",
   "version": "1.0.0",
   "description": "Vault query CLI — search and query Obsidian-style markdown vaults from the terminal",
   "keywords": [
@@ -22,10 +22,10 @@
   "license": "MIT",
   "type": "module",
   "bin": {
-    "vq": "./bin/vq"
+    "vori": "./bin/vori"
   },
   "scripts": {
-    "build": "bun build src/main.ts --compile --outfile bin/vq",
+    "build": "bun build src/main.ts --compile --outfile bin/vori",
     "test": "bun test",
     "typecheck": "tsgo --noEmit",
     "lint": "biome check src/ __tests__/",

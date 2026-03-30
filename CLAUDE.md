@@ -1,10 +1,10 @@
-# CLAUDE.md — vq
+# CLAUDE.md — vori
 
 Vault query CLI. Read-only queries against Obsidian-style markdown vaults from the terminal.
 
 ## What This Is
 
-`vq` is a standalone CLI tool: 9 read-only commands, one production dependency (`yaml`),
+`vori` is a standalone CLI tool: 9 read-only commands, one production dependency (`yaml`),
 compiled to a self-contained binary via `bun build --compile`. It works on any directory
 of `.md` files with YAML frontmatter — Obsidian vaults, personal wikis, note collections.
 
@@ -16,7 +16,7 @@ bun test             # run 45 tests (must pass before any commit)
 bun run typecheck    # tsgo --noEmit (TypeScript 7 native compiler, 7-10x faster than tsc)
 bun run lint         # biome check (0 findings required)
 bun run lint:fix     # biome check --write (auto-fix formatting)
-bun run build        # compile → bin/vq (git-ignored)
+bun run build        # compile → bin/vori (git-ignored)
 ```
 
 ## Architecture
@@ -63,14 +63,14 @@ interface Note {
 
 | Command | Second positional | Flags |
 |---------|-----------------|-------|
-| `vq list <vault>` | — | `--json` |
-| `vq query <vault>` | — | `--tag k=v`, `--hashtag t`, `--json` |
-| `vq tags <vault>` | — | `--json` |
-| `vq links <vault> <note>` | note name | `--json` |
-| `vq backlinks <vault> <note>` | note name | `--json` |
-| `vq orphans <vault>` | — | `--json` |
-| `vq search <vault> <query>` | search string | `--json` |
-| `vq recent <vault>` | — | `--days=N`, `--json` |
+| `vori list <vault>` | — | `--json` |
+| `vori query <vault>` | — | `--tag k=v`, `--hashtag t`, `--json` |
+| `vori tags <vault>` | — | `--json` |
+| `vori links <vault> <note>` | note name | `--json` |
+| `vori backlinks <vault> <note>` | note name | `--json` |
+| `vori orphans <vault>` | — | `--json` |
+| `vori search <vault> <query>` | search string | `--json` |
+| `vori recent <vault>` | — | `--days=N`, `--json` |
 
 Query semantics: multiple `--tag` flags are ANDed. Multiple `--hashtag` flags are ANDed.
 Dot notation for nested frontmatter: `--tag "meta.priority=high"`.
@@ -87,7 +87,7 @@ Dot notation for nested frontmatter: `--tag "meta.priority=high"`.
 
 ## Constraints (Iron Laws)
 
-1. **No vault mutation.** vq is strictly read-only. No write commands, ever.
+1. **No vault mutation.** vori is strictly read-only. No write commands, ever.
 2. **`yaml` is the only production dependency.** Adding a runtime dep requires a SPEC.
 3. **Binary ≤5MB.** CI checks size on every release.
 4. **Zero breaking changes within v1.x.** Flags and `--json` output shape are frozen.
@@ -115,7 +115,7 @@ SPEC numbers are permanent. Next available: **SPEC-002**.
 
 | SPEC | Title |
 |------|-------|
-| [SPEC-001](docs/specs/SPEC-001-architecture.md) | vq Architecture |
+| [SPEC-001](docs/specs/SPEC-001-architecture.md) | vori Architecture |
 
 ## ai-guardrails
 

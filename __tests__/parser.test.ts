@@ -13,7 +13,7 @@ import { loadVault, parseNote } from "../src/lib/parser.ts";
 let tmp: string;
 
 beforeEach(() => {
-  tmp = mkdtempSync(join(tmpdir(), "vq-parser-test-"));
+  tmp = mkdtempSync(join(tmpdir(), "vori-parser-test-"));
 });
 
 afterEach(() => {

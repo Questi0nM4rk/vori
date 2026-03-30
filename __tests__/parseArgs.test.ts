@@ -8,9 +8,9 @@
 import { describe, expect, it } from "bun:test";
 import { parseArgs } from "../src/main.ts";
 
-// Helper: prefix with "node vq" to simulate process.argv
+// Helper: prefix with "node vori" to simulate process.argv
 function argv(...args: string[]): string[] {
-  return ["node", "vq", ...args];
+  return ["node", "vori", ...args];
 }
 
 // ---------------------------------------------------------------------------
