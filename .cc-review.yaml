@@ -1,0 +1,26 @@
+version: 1
+mode: standard
+auto_review: true
+
+languages:
+  - TypeScript
+  - Gherkin
+
+ignore_paths:
+  - "docs/**"
+  - "**/*.md"
+  - "bun.lock"
+  - "bin/**"
+  - "__tests__/**/*.snap"
+
+instructions: |
+  This is a TypeScript CLI (vori) built with Bun for querying Obsidian-style markdown vaults
+  from the terminal. Entry point is src/main.ts.
+  Commands are in src/commands/, library code in src/lib/.
+  Uses biome for linting/formatting, lefthook for git hooks, and Gherkin/BDD tests in features/.
+  Focus on: vault traversal correctness, markdown parsing, query logic, file system error handling.
+
+known_patterns: []
+
+slop_detection: true
+memory: true
