@@ -50,15 +50,21 @@ export function parseNote(filePath: string, vaultRoot: string): Note {
 
   // Extract #hashtags — skip heading lines and fenced code blocks
   const hashtagSet = new Set<string>();
-  let inFence = false;
+  let fenceChar: "`" | "~" | null = null;
   for (const line of body.split("\n")) {
     const trimmed = line.trimStart();
-    // Toggle fence state on ``` or ~~~ markers
-    if (/^(`{3,}|~{3,})/.test(trimmed)) {
-      inFence = !inFence;
+    // Track which fence character opened the current fence; only close on matching char
+    const fenceMatch = trimmed.match(/^(`{3,}|~{3,})/);
+    if (fenceMatch) {
+      const ch = fenceMatch[1][0] as "`" | "~";
+      if (fenceChar === null) {
+        fenceChar = ch;
+      } else if (fenceChar === ch) {
+        fenceChar = null;
+      }
       continue;
     }
-    if (inFence) continue;
+    if (fenceChar !== null) continue;
     // Skip heading lines
     if (/^#{1,6}\s/.test(trimmed)) continue;
     for (const m of line.matchAll(/(?:^|\s)#([a-zA-Z][\w-/]*)/g)) {
@@ -67,9 +73,10 @@ export function parseNote(filePath: string, vaultRoot: string): Note {
   }
 
   // Extract [[wikilinks]] — exclude ![[embeds]] using negative lookbehind
+  // Strip section anchors (#heading) so [[design#Iron Laws]] resolves to "design"
   const wikilinkSet = new Set<string>();
   for (const m of body.matchAll(/(?<!!)\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g)) {
-    wikilinkSet.add(m[1].trim());
+    wikilinkSet.add(m[1].trim().replace(/#.*$/, ""));
   }
 
   return {
