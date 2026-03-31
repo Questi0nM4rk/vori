@@ -36,6 +36,9 @@
     "lint:fix": "biome check --write src/ __tests__/",
     "prepublishOnly": "bun run typecheck && bun test && bun run build:npm"
   },
+  "engines": {
+    "bun": ">=1.0.0"
+  },
   "dependencies": {
     "yaml": "^2.8.0"
   },

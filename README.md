@@ -3,7 +3,7 @@
 Search and query Obsidian-style markdown vaults from the terminal.
 
 [![CI](https://github.com/Questi0nM4rk/vori/actions/workflows/ai-guardrails.yml/badge.svg)](https://github.com/Questi0nM4rk/vori/actions/workflows/ai-guardrails.yml)
-[![npm](https://img.shields.io/npm/v/vori)](https://www.npmjs.com/package/vori)
+[![npm](https://img.shields.io/npm/v/%40questi0nm4rk%2Fvori)](https://www.npmjs.com/package/%40questi0nm4rk%2Fvori)
 [![license](https://img.shields.io/github/license/Questi0nM4rk/vori)](LICENSE)
 
 `vori` is a fast, read-only CLI for querying directories of Markdown files.
