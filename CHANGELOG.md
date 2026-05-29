@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Publish as @questi0nm4rk/vori — npm blocked bare 'vori' name (#5)
 - Codespell skip bin/, wikilink anchors, fence type mismatch, engines field, npm badge (#12)
 
+### Testing
+
+- Add cross-doc count-drift guard
+
 ### Chore
 
 - Add ai-guardrails strict profile (#1)
