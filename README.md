@@ -178,7 +178,7 @@ git clone https://github.com/Questi0nM4rk/vori
 cd vori
 bun install
 
-bun test             # 45 tests
+bun test             # 67 tests
 bun run typecheck    # strict TypeScript
 bun run lint         # biome
 bun run build        # compiles → bin/vori

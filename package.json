@@ -45,9 +45,10 @@
     "typecheck": "tsgo --noEmit",
     "lint": "biome check src/ __tests__/",
     "lint:fix": "biome check --write src/ __tests__/",
+    "check:doc-counts": "bun scripts/check-doc-counts.ts",
     "changelog": "git cliff | bun -e \"const t=await Bun.stdin.text();await Bun.write('CHANGELOG.md',t.replace(/\\n+$/,'\\n'))\"",
     "changelog:unreleased": "git cliff --unreleased --prepend CHANGELOG.md && bun -e \"await Bun.write('CHANGELOG.md',(await Bun.file('CHANGELOG.md').text()).replace(/\\n+$/,'\\n'))\"",
-    "prepublishOnly": "bun run typecheck && bun test && bun run build:npm"
+    "prepublishOnly": "bun run typecheck && bun test && bun scripts/check-doc-counts.ts && bun run build:npm"
   },
   "engines": {
     "bun": ">=1.0.0"

@@ -26,3 +26,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Disable CodeRabbit auto-review (#13)
 - Grant WebSearch + WebFetch to cc-review workflow (#14)
 - Enrich package.json metadata and realign LICENSE holder
+- Add git-cliff changelog config and scripts
