@@ -20,6 +20,17 @@
   ],
   "author": "Questi0nM4rk",
   "license": "MIT",
+  "homepage": "https://github.com/Questi0nM4rk/vori#readme",
+  "bugs": {
+    "url": "https://github.com/Questi0nM4rk/vori/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Questi0nM4rk/vori.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "bin": {
     "vori": "bin/vori.js"
