@@ -70,20 +70,20 @@ The one runtime dependency is `yaml`.
 
 ## Numbers
 
-Measured 2026-10-12 on Arch Linux, Bun 1.3.14.
+Measured 2026-10-12 on Arch Linux, Bun 1.3.14. Times vary by machine and run.
 
 | What | Value | How measured |
 | --- | --- | --- |
 | Tests | 67 pass, 0 fail | `bun test` |
-| Test run time | 226 ms | `bun test` (last line) |
+| Test run time | about 0.25 s (226 to 244 ms over two runs) | `bun test` (last line) |
 | Source plus test code | 1,112 lines of code | `scc src __tests__` |
 | npm bundle size | 250,473 bytes | `bun run build:npm`, then `wc -c bin/vori.js` |
 | Compiled binary size | 94,832,768 bytes (about 90 MB, includes the Bun runtime) | `bun run build`, then `ls -l bin/vori` |
-| Search over 1,000 generated notes | about 0.20 s median of 5 runs | `time bun bin/vori.js search <vault> "Note 500"` |
-| Search over 10,000 generated notes | about 0.68 s median of 5 runs | same command, 10,000 notes |
+| Search over 1,000 generated notes | about 0.07 s median of 5 runs | `time bun bin/vori.js search <vault> "Note 500"` |
+| Search over 10,000 generated notes | about 0.23 s median of 5 runs | same command, 10,000 notes |
 
 The generated notes are small (one short paragraph each).
-A real vault with long notes will be slower. Start-up of Bun is part of every time.
+A real vault with long notes will be slower. Each time includes the start-up of Bun.
 
 Commits include agent-authored work under my identity;
 design, orchestration and review are mine.
