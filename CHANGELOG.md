@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Features
 
-- Initial vq release — vault query CLI for markdown vaults
+- Initial vori release — vault query CLI for markdown vaults
 - Configure npm publish — source-first, bun-native install (#2)
 
 ### Bug Fixes

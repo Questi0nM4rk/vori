@@ -89,7 +89,8 @@ Dot notation for nested frontmatter: `--tag "meta.priority=high"`.
 
 1. **No vault mutation.** vori is strictly read-only. No write commands, ever.
 2. **`yaml` is the only production dependency.** Adding a runtime dep requires a SPEC.
-3. **Binary ≤5MB.** CI checks size on every release.
+3. **Bundle stays small.** The npm bundle `bin/vori.js` is about 250 KB.
+   The `bun build --compile` binary is about 90 MB (it embeds the Bun runtime).
 4. **Zero breaking changes within v1.x.** Flags and `--json` output shape are frozen.
 5. **Obsidian-compatible, not Obsidian-exclusive.** Any `.md` directory is a valid vault.
 

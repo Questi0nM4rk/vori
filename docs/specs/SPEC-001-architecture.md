@@ -33,8 +33,8 @@
 4. **ai-guardrails as standard infrastructure.** Global hooks cover dangerous commands and config protection. Project-level config covers TypeScript-specific rules.
    WHY: Guardrails enforce standards without relying on model memory or session context.
 
-5. **npm-first, binary-optional.** Published to npm for `bun add -g @questi0nm4rk/vori` install. Precompiled binaries on GitHub releases for systems without bun/node.
-   WHY: npm is the primary install path; binaries serve users who want zero-dependency installs.
+5. **npm-first, binary-optional.** Published to npm for `bun add -g @questi0nm4rk/vori` install. `bun run build` compiles a standalone binary, but no release has been published yet.
+   WHY: npm is the install path in use. The compiled binary is about 90 MB because it embeds the Bun runtime.
 
 6. **No runtime dependencies beyond bun/node.** The `yaml` package is the only production dependency. `@questi0nm4rk/feats` and all test tooling are devDependencies.
    WHY: CLI tools with deep dep trees are fragile to install. A tool reading markdown files should be nearly dependency-free.
@@ -173,8 +173,8 @@ Project-level `.ai-guardrails.json`:
 
 ## Constraints
 
-1. **Binary must be ≤5MB.** Bun compile produces self-contained binaries. If size grows beyond this, investigate tree-shaking before adding dependencies.
-   CHANGE TRIGGER: CI size check on every release.
+1. **Keep the npm bundle small.** `bin/vori.js` is about 250 KB. Check its size before adding dependencies.
+   CHANGE TRIGGER: a new runtime dependency.
 
 2. **Zero breaking changes within a major version.** Command flags and output format are stable within v1.x. `--json` output shape is frozen.
    CHANGE TRIGGER: Any flag removal or output format change → bump major version.
