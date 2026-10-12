@@ -5,9 +5,9 @@
 **A read-only command line tool that queries a folder of Markdown notes (frontmatter, hashtags, wikilinks)
 for people who keep notes in Obsidian-style vaults.**
 
+[![npm](https://img.shields.io/npm/v/@questi0nm4rk/vori?color=cb3837&label=npm)](https://www.npmjs.com/package/@questi0nm4rk/vori)
 [![CI](https://github.com/Questi0nM4rk/vori/actions/workflows/ci.yml/badge.svg)](https://github.com/Questi0nM4rk/vori/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/%40questi0nm4rk%2Fvori)](https://www.npmjs.com/package/@questi0nm4rk/vori)
-[![license](https://img.shields.io/github/license/Questi0nM4rk/vori)](LICENSE)
+[![license](https://img.shields.io/github/license/Questi0nM4rk/vori?color=blue)](./LICENSE)
 
 </div>
 
@@ -35,7 +35,7 @@ It would have no reason to exist if the vault tools in Obsidian itself could be 
 
 ## Quickstart
 
-Requires Bun 1.3+ (tested with 1.3.14).
+Tested with Bun 1.3.14.
 
 ```bash
 bun install && bun test
