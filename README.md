@@ -101,4 +101,6 @@ design, orchestration and review are mine.
 
 ## License
 
-MIT
+GPL-3.0.
+
+Releases published before 2026-10-12 remain available under MIT.
