@@ -95,7 +95,7 @@ design, orchestration and review are mine.
 - **Experimental:** None.
 - **Known gaps:**
   - No index: every call parses the whole vault.
-  - No GitHub release exists. The compiled binary is large (it includes the Bun runtime) and is not published.
+  - The compiled binary is large (it includes the Bun runtime); a `v*` tag uploads it to a GitHub release.
   - The `title` frontmatter key is not used for the display name.
   - Only tested on Linux.
 
