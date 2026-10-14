@@ -97,6 +97,7 @@ design, orchestration and review are mine.
   - No index: every call parses the whole vault.
   - The compiled binary is large (it includes the Bun runtime); a `v*` tag uploads it to a GitHub release
     and stages the npm version, which a maintainer approves on npmjs.com (2FA).
+    Versions are `X.Y.Z-beta.N` under the npm dist-tag `beta`; nothing is promised in a beta.
   - The `title` frontmatter key is not used for the display name.
   - Only tested on Linux.
 
