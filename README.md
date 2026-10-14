@@ -95,7 +95,8 @@ design, orchestration and review are mine.
 - **Experimental:** None.
 - **Known gaps:**
   - No index: every call parses the whole vault.
-  - The compiled binary is large (it includes the Bun runtime); a `v*` tag uploads it to a GitHub release.
+  - The compiled binary is large (it includes the Bun runtime); a `v*` tag uploads it to a GitHub release
+    and stages the npm version, which a maintainer approves on npmjs.com (2FA).
   - The `title` frontmatter key is not used for the display name.
   - Only tested on Linux.
 
